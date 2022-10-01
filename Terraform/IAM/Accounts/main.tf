@@ -1,7 +1,7 @@
 provider "aws" {
   region     = "us-east-1"
-  access_key = "AKIAY5IA3CAQF6PM2ZEI"
-  secret_key = "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"
+  access_key = "AKIAY5IA3CAQK2RVCWBV"
+  secret_key = "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"
 }
 
 resource "aws_iam_group" "group" {
