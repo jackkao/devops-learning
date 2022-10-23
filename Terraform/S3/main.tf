@@ -12,9 +12,9 @@ resource "aws_s3_bucket_object" "document260922" {
 }
 
 
-data "aws_iam_group" "document-data" {
-  group_name = "deverlopers"
-}
+#data "aws_iam_group" "document-data" {
+#  group_name = "deverlopers"
+#}
 
 resource "aws_s3_bucket_policy" "document-policy" {
   bucket = aws_s3_bucket.document.id

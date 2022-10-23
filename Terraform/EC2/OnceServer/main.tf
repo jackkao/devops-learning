@@ -18,16 +18,16 @@ resource "aws_instance" "webserver" {
 
 resource "tls_private_key" "pk" {
   algorithm = "RSA"
-  rsa_bits = 4084
+  rsa_bits  = 4084
 }
 
 resource "aws_key_pair" "web" {
-  key_name = "webserver"
+  key_name   = "webserver"
   public_key = tls_private_key.pk.public_key_openssh
 
- # provisioner "local-exec" {
- #   command = "echo '${tls_private_key.pk.private_key_pem}' > webssh.pem"
- # }
+  # provisioner "local-exec" {
+  #   command = "echo '${tls_private_key.pk.private_key_pem}' > webssh.pem"
+  # }
 }
 
 resource "local_file" "webssh" {
@@ -38,23 +38,23 @@ resource "aws_security_group" "ssh-access" {
   name        = "ssh-access"
   description = "Access from internet via SSH "
   ingress {
-    from_port  = 22
-    to_port    = 22
-    protocol   = "tcp"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
-    from_port  = 80
-    to_port    = 80
-    protocol   = "tcp"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
-    cidr_blocks =["0.0.0.0/0"]
-  } 
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 
 output "publicip" {
